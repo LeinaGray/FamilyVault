@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.FamilyVault" parent="Base.Theme.FamilyVault" />
+    <style name="Theme.FamilyVault.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.FamilyVault.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.FamilyVault.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
