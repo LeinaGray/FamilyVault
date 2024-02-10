@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     RecyclerView family_member_list;
     FloatingActionButton add_family_member;
+    Button signup;
+    EditText first_name, middle_name, last_name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +27,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void getFirstName(View v){
-        EditText t = findViewById(R.id.first_name);
-        String input = t.getText().toString();
-        ((TextView)findViewById(R.id.display)).setText(input);
+        Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+        Log.d(null, "onCreate called.");
+
+        first_name = findViewById(R.id.first_name);
+        middle_name = findViewById(R.id.middle_name);
+        last_name = findViewById(R.id.last_name);
+        signup = findViewById(R.id.add_family_member);
+                try {
+                    DatabaseHelper mydb = new DatabaseHelper(MainActivity.this);
+                    mydb.addMember(first_name.getText().toString().trim(),
+                            middle_name.getText().toString().trim(),
+                            last_name.getText().toString().trim());
+                } catch (Exception e){
+                    Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                };
 
         showFamilyList(v);
 
 
-        Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
-        Log.d(null, "onCreate called.");
+
     }
 
     public void showFamilyList(View v) {
